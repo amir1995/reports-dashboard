@@ -37,7 +37,7 @@ export const ReportHeader = (props: TReportHeaderProps) => {
   } = props;
 
   return (
-    <div className="flex w-full items-center justify-between pt-4">
+    <div className="flex w-full items-center justify-between z-10">
       <Title title={texts.reports} detail={texts.reportsDetail} />
       <div>
         <DropDown

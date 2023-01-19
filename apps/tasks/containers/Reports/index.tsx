@@ -7,7 +7,7 @@ import {
   TProjectItem,
 } from 'tasks/types/types/serviceCallTypes';
 import { normalizeDataBasedDropDown } from 'tasks/utils/normalizeDataBasedDropDown';
-import { NoData, ReportHeader, ReportsDetails } from 'ui';
+import { Loader, NoData, ReportHeader, ReportsDetails } from 'ui';
 
 import { reports } from '@/services/generateReportsList';
 
@@ -40,7 +40,7 @@ export const Reports = (props: TReportsProps) => {
     [gatewaysData],
   );
 
-  const { error, isLoading, isSuccess, data, refetch } = useQuery(
+  const { error, isLoading, isSuccess, isFetching, data, refetch } = useQuery(
     ['reports', selectedProject, selectedGateway, selectedToDate, selectedFromDate],
     () => {
       const normalizeReportsBodyData: TBodyGenerateReports = {
@@ -71,8 +71,9 @@ export const Reports = (props: TReportsProps) => {
         selectedToDate={selectedToDate}
         fetchReports={refetch}
       />
-
-      {data?.type ? (
+      {isLoading && isFetching ? (
+        <Loader />
+      ) : data?.type ? (
         <ReportsDetails
           reportType={data.type}
           reportData={data}

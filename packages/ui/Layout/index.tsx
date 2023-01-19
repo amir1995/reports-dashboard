@@ -15,7 +15,7 @@ export const Layout = ({ children, className = '' }: LayoutProps) => {
       <div
         role="main"
         id="mainLayout"
-        className={classNames('pt-18 bg-neutral-1000 mx-auto', className)}
+        className={classNames('pt-20 bg-neutral-1000 mx-auto', className)}
       >
         {children}
       </div>

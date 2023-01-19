@@ -13,7 +13,7 @@ export function renderReportFooterText(props: TRenderReportAccordionTitleProps):
   } else if (reportType === 'allP-oneG') {
     return `GATEWAY TOTAL | ${totalAmount} USD`
   }else if (reportType === 'oneP-oneG') {
-    return `TOTAL | ${totalAmount}  USD`
+    return `TOTAL | ${totalAmount} USD`
   } else {
     return `PROJECT TOTAL | ${totalAmount} USD`
   }

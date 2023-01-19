@@ -25,9 +25,10 @@ This turborepo has some additional tools already setup for you:
 - [Prettier](https://prettier.io) for code formatting
 - [Tailwind](https://tailwindcss.com/) for code styling
 - [React Query](https://react-query-v3.tanstack.com/) for fetch and cache and update data
-- [axios](https://axios-http.com/) for service call
-- [react table](https://react-table-v7.tanstack.com/) for showing data on table
-- [jestjs](https://jestjs.io/) for test cases
+- [Axios](https://axios-http.com/) for service call
+- [React Table](https://react-table-v7.tanstack.com/) for showing data on table
+- [Jestjs](https://jestjs.io/) for test cases
+- [recharts](https://recharts.org/en-US/) for pie chart
 
 ### Build
 
@@ -45,4 +46,13 @@ To develop all apps and packages, run the following command:
 ```
 cd reports-dashboard
 yarn run dev
+```
+
+### Test
+
+To run test on application:
+
+```
+cd reports-dashboard/apps/tasks
+yarn test | jest
 ```

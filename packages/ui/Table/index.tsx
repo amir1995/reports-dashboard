@@ -54,7 +54,7 @@ export const Table = (props: TTable) => {
           <div className="mt-3.5 flex flex-col overflow-hidden">
             <div className="overflow-x-auto">
               <div className="inline-block min-w-full align-middle">
-                <div className="overflow-scroll max-h-64">
+                <div className="overflow-scroll max-h-83">
                   <table {...getTableProps()} className="min-w-full">
                     <thead className="bg-neutral-1000">
                       {headerGroups.map(headerGroup => (

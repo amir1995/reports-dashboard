@@ -135,6 +135,7 @@ module.exports = {
       6.5: '26px',
       6.75: '27px',
       7: '28px',
+      7.75: '31px',
       8: '32px',
       8.5: '34px',
       8.75: '35px',
@@ -203,6 +204,7 @@ module.exports = {
       110.5: '442px',
       115: '470px',
       120: '480px',
+      130: '507px',
       150: '553.696px',
       160: '640px',
       180: '720px',
@@ -351,10 +353,7 @@ module.exports = {
       DEFAULT: '1',
     },
     fontFamily: {
-      sans: [
-        'Roboto',
-        'sans-serif',
-      ],
+      sans: ['Roboto', 'sans-serif'],
     },
     fontSize: {
       xxs: ['11px', { lineHeight: '14px', letterSpacing: '-0.02rem' }],
@@ -362,7 +361,7 @@ module.exports = {
       xsm: ['13px', { lineHeight: '14px' }],
       sm: ['14px', { lineHeight: '20px' }],
       sb: ['15px', { lineHeight: '20px' }],
-      base: ['16px', { lineHeight: '19px'}],
+      base: ['16px', { lineHeight: '19px' }],
       md: ['17px', { lineHeight: '24px', letterSpacing: '0em' }],
       lg: ['18px', { lineHeight: '28px' }],
       xl: ['20px', { lineHeight: '28px' }],
@@ -539,6 +538,7 @@ module.exports = {
       '1/3-screen': '33vh',
       '4/5-screen': '80vh',
       '7/10-screen': '70vh',
+      sidebar: 'calc(100vh - 80px)'
     }),
     inset: (theme, { negative }) => ({
       auto: 'auto',
@@ -678,13 +678,14 @@ module.exports = {
       1400: '1400px',
       ...breakpoints(theme('screens')),
     }),
-    minHeight: {
+    minHeight: theme => ({
       0: '0px',
       10: '40px',
       14: '56px',
       full: '100%',
-      screen: 'calc(100vh - 72px)',
-    },
+      screen: 'calc(100vh - 80px)',
+      ...theme('spacing'),
+    }),
     minWidth: theme => ({
       0: '0px',
       full: '100%',
@@ -932,6 +933,7 @@ module.exports = {
       screen: '100vw',
       min: 'min-content',
       max: 'max-content',
+      main: 'calc(100vw - 100px)',
     }),
     zIndex: {
       auto: 'auto',
