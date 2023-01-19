@@ -54,5 +54,7 @@ To run test on application:
 
 ```
 cd reports-dashboard/apps/tasks
-yarn test | jest
+yarn test
+ or 
+jest
 ```
