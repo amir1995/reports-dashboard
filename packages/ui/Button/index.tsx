@@ -1,11 +1,11 @@
-import classNames from 'classnames';
+import classNames from "classnames";
 import React from 'react';
 
 interface IButtonProps {
   children: React.ReactNode;
   className: string;
   disabled?: boolean;
-  onClick?: () => void
+  onClick?: () => void;
 }
 
 export function Button(props: IButtonProps) {
@@ -28,5 +28,5 @@ export function Button(props: IButtonProps) {
 Button.defaultProps = {
   className: '',
   disabled: false,
-  onClick: () => {}
+  onClick: () => {},
 };

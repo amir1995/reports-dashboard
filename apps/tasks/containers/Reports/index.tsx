@@ -1,11 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useMemo, useState } from 'react';
 import { TDropDownItem } from 'tasks/types/types/dataTypes';
-import {TBodyGenerateReports, TGatewayItem, TProjectItem} from 'tasks/types/types/serviceCallTypes';
+import {
+  TBodyGenerateReports,
+  TGatewayItem,
+  TProjectItem,
+} from 'tasks/types/types/serviceCallTypes';
 import { normalizeDataBasedDropDown } from 'tasks/utils/normalizeDataBasedDropDown';
-import {NoData, ReportHeader, ReportsDetails} from 'ui';
+import { NoData, ReportHeader, ReportsDetails } from 'ui';
 
-import {reports} from "@/services/generateReportsList";
+import { reports } from '@/services/generateReportsList';
 
 type TReportsProps = {
   projectsData: TProjectItem[];
@@ -15,8 +19,14 @@ type TReportsProps = {
 export const Reports = (props: TReportsProps) => {
   const { projectsData, gatewaysData } = props;
 
-  const [selectedProject, setSelectedProject] = useState<TDropDownItem>({ label: 'Select project', id: 'all' });
-  const [selectedGateway, setSelectedGateway] = useState<TDropDownItem>({ label: 'Select gateway', id: 'all' });
+  const [selectedProject, setSelectedProject] = useState<TDropDownItem>({
+    label: 'Select project',
+    id: 'all',
+  });
+  const [selectedGateway, setSelectedGateway] = useState<TDropDownItem>({
+    label: 'Select gateway',
+    id: 'all',
+  });
   const [selectedFromDate, setSelectedFromDate] = useState<string>('2021-01-01');
   const [selectedToDate, setSelectedToDate] = useState<string>('2021-12-31');
 
@@ -30,16 +40,16 @@ export const Reports = (props: TReportsProps) => {
     [gatewaysData],
   );
 
-  const { data, refetch } = useQuery(
+  const { error, isLoading, isSuccess, data, refetch } = useQuery(
     ['reports', selectedProject, selectedGateway, selectedToDate, selectedFromDate],
     () => {
       const normalizeReportsBodyData: TBodyGenerateReports = {
         from: selectedFromDate,
         to: selectedToDate,
-        ...(selectedProject.id !== "all" ? {projectId: selectedProject.id} : {}),
-        ...(selectedGateway.id !== "all" ? {gatewayId: selectedGateway.id} : {})
-      }
-      return reports(normalizeReportsBodyData)
+        ...(selectedProject.id !== 'all' ? { projectId: selectedProject.id } : {}),
+        ...(selectedGateway.id !== 'all' ? { gatewayId: selectedGateway.id } : {}),
+      };
+      return reports(normalizeReportsBodyData);
     },
     {
       enabled: false,
@@ -62,7 +72,19 @@ export const Reports = (props: TReportsProps) => {
         fetchReports={refetch}
       />
 
-      {data?.type ? <ReportsDetails reportType={data.type}/>: <NoData />}
+      {data?.type ? (
+        <ReportsDetails
+          reportType={data.type}
+          reportData={data}
+          error={error}
+          isLoading={isLoading}
+          isSuccess={isSuccess}
+          selectedProject={selectedProject}
+          selectedGateway={selectedGateway}
+        />
+      ) : (
+        <NoData />
+      )}
     </div>
   );
 };

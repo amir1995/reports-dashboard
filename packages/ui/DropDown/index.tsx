@@ -30,7 +30,7 @@ export const DropDown = (props: TDropDownProps) => {
       disabled={!dataItems?.length}
     >
       <div className="flex justify-center">
-        <div className="relative px-2.5 py-2">
+        <div className="relative">
           <span className="inline-block w-full rounded">
             <div className="flex items-center space-x-3">
               <span className="block">{selectedItem?.label ?? title}</span>

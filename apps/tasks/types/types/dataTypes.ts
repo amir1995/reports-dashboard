@@ -3,6 +3,4 @@ export type TDropDownItem = {
   id: string
 }
 
-export type TReportsType = {
-  reportType: 'oneP-oneG' | 'allP-oneG' | 'oneP-allG' | 'allP-allG';
-};
+export type TReportsType =  'oneP-oneG' | 'allP-oneG' | 'oneP-allG' | 'allP-allG';

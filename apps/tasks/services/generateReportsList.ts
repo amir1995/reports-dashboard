@@ -7,6 +7,10 @@ export const reports = (data: TBodyGenerateReports): any => {
     res => {
       let normalizeData = {};
       let type = '';
+      let totalAmount = res.data.reduce((acc, cur) => {
+        acc = acc + cur.amount;
+        return acc;
+      }, 0);
 
       if (!data.gatewayId && data.projectId) {
         normalizeData = res.data.reduce((acc, cur) => {
@@ -44,13 +48,13 @@ export const reports = (data: TBodyGenerateReports): any => {
         type = 'oneP-oneG';
       } else if (data.gatewayId && !data.projectId) {
         type = 'allP-oneG';
-      } else if (!data.gatewayId && data.projectId){
+      } else if (!data.gatewayId && data.projectId) {
         type = 'oneP-allG';
       } else {
         type = 'allP-allG';
       }
 
-      return { ...normalizeData, type };
+      return { ...normalizeData, type, totalAmount: totalAmount.toFixed(3).toString() };
     },
   );
 };

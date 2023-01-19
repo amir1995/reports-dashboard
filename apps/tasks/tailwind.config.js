@@ -383,7 +383,7 @@ module.exports = {
       'account-field': ['15px', { lineHeight: '20px', letterSpacing: '-0.24px' }],
       hero: ['44px', { lineHeight: '48px', letterSpacing: '0.02rem' }],
       title: ['32px', { lineHeight: '32px', letterSpacing: '-0.02rem' }],
-      subtitle: ['16px', { lineHeight: '20px', letterSpacing: '-0.06rem' }],
+      subtitle: ['16px', { lineHeight: '26px' }],
       'cancel-sub-button': ['17px', { lineHeight: '22px', letterSpacing: '-0.41px' }],
     },
     fontWeight: {
