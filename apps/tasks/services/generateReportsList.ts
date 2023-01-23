@@ -3,12 +3,11 @@ import { TBodyGenerateReports } from '@/types/types/serviceCallTypes';
 import apiClient from '@/utils/apiClient';
 
 export const reports = (data: TBodyGenerateReports): any => {
-
-  const normalWayToFormatDate = (date:string): string => {
+  const normalWayToFormatDate = (date: string): string => {
     // BTW we can use moment js for formatting the date object
     // return moment(date).format('dd.MM.YYYY');
-    return date.split('-').reverse().toString().replaceAll(',', '.')
-  }
+    return date.split('-').reverse().toString().replaceAll(',', '.');
+  };
   return apiClient<IReportsData>({ url: '/api/generateReportsList/', method: 'post', data }).then(
     res => {
       let normalizeData = {};
@@ -23,12 +22,25 @@ export const reports = (data: TBodyGenerateReports): any => {
           if (acc[cur.gatewayId]) {
             acc = {
               ...acc,
-              [cur.gatewayId]: [...acc[cur.gatewayId], cur],
+              [cur.gatewayId]: [
+                ...acc[cur.gatewayId],
+                {
+                  ...cur,
+                  created: normalWayToFormatDate(cur.created),
+                  modified: normalWayToFormatDate(cur.modified),
+                },
+              ],
             };
           } else {
             acc = {
               ...acc,
-              [cur.gatewayId]: [cur],
+              [cur.gatewayId]: [
+                {
+                  ...cur,
+                  created: normalWayToFormatDate(cur.created),
+                  modified: normalWayToFormatDate(cur.modified),
+                },
+              ],
             };
           }
           return acc;
